@@ -1,0 +1,18 @@
+<div class="chips">
+  <mat-card>
+
+    <mat-chip-list>
+
+      <app-category-filter *ngFor='let categoryItem of category' [category]="categoryItem" (click)="filter()"></app-category-filter>
+    </mat-chip-list>
+  </mat-card>
+</div>
+
+<div fxLayout="row wrap" fxLayout.md="10px grid">
+
+  <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let articleItem of article" >
+
+    <app-article-card *ngIf="articleItem?.body"[article]="articleItem"></app-article-card>
+
+  </div>
+</div>

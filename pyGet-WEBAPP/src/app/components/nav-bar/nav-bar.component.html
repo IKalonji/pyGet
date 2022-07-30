@@ -1,0 +1,31 @@
+<p>
+  <mat-toolbar class="nav-bar">
+    <h1 routerLink="/">pyGet</h1>
+    <span class="example-spacer"></span>
+    <div>
+      <a
+        *ngIf="!user.username"
+        href=""
+        >Login</a
+      >
+      <button
+        class="nav-bar-user-option"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        *ngIf="user.username"
+      >
+        {{ user.username }}
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before" class="nav-bar-menu">
+        <button mat-menu-item (click)="getUser()">Profile</button>
+        <button mat-menu-item routerLink="/my-articles">My articles</button>
+        <button mat-menu-item routerLink="/add-article">Submit article</button>
+        <a
+          mat-menu-item
+          href=""
+          >Log out</a
+        >
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</p>

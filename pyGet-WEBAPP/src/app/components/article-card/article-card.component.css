@@ -1,0 +1,24 @@
+.content {
+  padding: 16px;
+}
+
+.article-footer {
+  text-align: right;
+}
+
+.article-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.article-author {
+  color: lightgrey;
+}
+
+.article-date {
+  color: royalblue;
+}
+
+.article-category {
+  color: green;
+}

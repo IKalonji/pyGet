@@ -1,0 +1,10 @@
+.articleCard{
+    text-align: center;
+    padding: 10rem;
+}
+
+.articleText{
+    min-height: 200px;
+    min-width: 400px;
+}
+

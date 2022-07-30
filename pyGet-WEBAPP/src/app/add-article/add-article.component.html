@@ -1,0 +1,32 @@
+<article class="articleCard">
+    <mat-card>
+        <mat-card-title>
+            <h1>Add an article</h1>
+        </mat-card-title>
+        <div>
+            <mat-form-field>
+                <input matInput #input minLength="6" maxlength="50" placeholder="Title" [(ngModel)]="article.title" [formControl]="titleControl" required>
+                <mat-hint>min length 5, max length 50</mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="selectedValue">
+                  <mat-option *ngFor="let category of categories" [value]="category" [formControl]="categoryControl" required>
+                    {{category.categoryName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <textarea matInput placeholder="Article Content" class="articleText" [(ngModel)]="article.body" [formControl]="contentControl" required></textarea>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-button (click)="submitArticle($event)">Post Article</button>
+        </div>
+    </mat-card>
+</article>

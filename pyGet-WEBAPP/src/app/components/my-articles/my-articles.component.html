@@ -1,0 +1,11 @@
+<h1>Your Submitted Articles</h1>
+<div *ngIf="myArticles" fxLayout="row wrap" fxLayout.md="10px grid">
+
+    <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let articleItem of myArticles" >
+  
+      <app-article-card *ngIf="articleItem.user?.username === userName"[article]="articleItem"></app-article-card>
+  
+    </div>
+  </div>
+
+  <p *ngIf="myArticles.length === 0">{{ message }}</p>

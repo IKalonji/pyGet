@@ -1,9 +1,9 @@
+import json
 from struct import pack
 import sys
 import os
 import requests
 
-test_CID = "QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn"
 
 ENDPOINT = 'http://localhost:5000/pyget/v0/'
 
@@ -52,27 +52,15 @@ def install_package(package_name):
     package_url = ENDPOINT + 'get-package/' + package_name
     response = requests.get(package_url)
     if response.status_code != 200:
-        print('Package not found.')
+        print('Package not found.', response.json())
         sys.exit(0)
 
-    package = response.json()['data']
+    print(response.json())
+    #package = response.json()['data']
 
-    print("""Package found: {}""".format(package))
+    print("""Package found""")
+    #print("""Package found: {}""".format(package))
     
-
-    cid = package['package_cid']
-
-    #get package from IPFS
-    package_url = 'https://ipfs.io/ipfs/' + 'bafkreibn2afdduqkv4ntcb7rhbveepfieyomy4ppblgf4ver5o2xi6j2ou' #test_CID
-    # package_url = 'https://gateway.pinata.cloud/ipfs/' + 'bafkreibn2afdduqkv4ntcb7rhbveepfieyomy4ppblgf4ver5o2xi6j2ou'
-
-    response = requests.get(package_url, stream=True, allow_redirects=True)
-    print(response.headers)
-
-    print("""Downloading package from {}""".format(package_url))
-    if response.status_code != 200:
-        print('Package not found.')
-        sys.exit(0)
 
     #write package to file
 
@@ -83,13 +71,28 @@ def uninstall_package(package_name):
     """
     Uninstall package
     """
-    pass
+    #Remove package from pyget.json and delete package file from pyget_modules
+    with open('pyget.json', 'r') as pyget_file:
+        pyget_json = pyget_file.read()
+        pyget_data = json.loads(pyget_json)
+        pyget_data['dependencies'].remove(package_name)
+        with open('pyget.json', 'w') as pyget_file:
+            pyget_file.write(json.dumps(pyget_data))
+    os.remove(os.path.join('pyget_modules', package_name))
 
 def list_packages():
     """
     Get packages
     """
-    pass
+    #get packages from API
+    package_url = ENDPOINT + 'get-packages'
+    response = requests.get(package_url)
+    if response.status_code != 200:
+        print('No packages found.')
+        sys.exit(0)
+    print("""Packages found""")
+    for package in response.json()['data']:
+        print(package)
 
 def help():
     """
@@ -120,23 +123,45 @@ def run(arguments):
     if len(arguments) == 0:
         help()
         sys.exit(0)
-    if arguments[0] == 'help':
+    elif arguments[0] == 'help':
         help()
         sys.exit(0)
-    if arguments[0] == 'list':
+    elif arguments[0] == 'list':
         list_packages()
         sys.exit(0)
-    if arguments[0] == 'init':
+    elif arguments[0] == 'init':
+        if len(arguments) != 2:
+            print('Please provide a project name with no spaces in between.')
+            sys.exit(0)
         init(arguments[1])
         sys.exit(0)
-    if arguments[0] == 'install':
-        install_package(arguments[1])
+    elif arguments[0] == 'install':
+        if len(arguments) == 1:
+            #install all packages from pyget.json
+            with open('pyget.json', 'r') as pyget_file:
+                pyget_json = pyget_file.read()
+                pyget_data = json.loads(pyget_json)
+                for package in pyget_data['dependencies']:
+                    install_package(package)
+        for package in arguments[1:]:
+            install_package(package)
         sys.exit(0)
-    if arguments[0] == 'uninstall':
-        uninstall_package(arguments[1])
+    elif arguments[0] == 'uninstall':
+        if len(arguments) == 1:
+            #uninstall all packages from pyget.json
+            input = input('Are you sure you want to uninstall all packages? (y/n) ')
+            if input == 'y':
+                with open('pyget.json', 'r') as pyget_file:
+                    pyget_json = pyget_file.read()
+                    pyget_data = json.loads(pyget_json)
+                    for package in pyget_data['dependencies']:
+                        uninstall_package(package)
+        for package in arguments[1:]:
+            uninstall_package(package)
         sys.exit(0)
-    help()
-    sys.exit(0)
+    else: 
+        help()
+        sys.exit(0)
 
 
 if __name__ == '__main__':

@@ -1,2 +1,19 @@
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<header role="banner">
+  <a routerLink="/">PyGet</a>
+  <div class="spacer"></div>
+  <button routerLink="/create" >Add Package</button>
+</header>
+
+<main role="main">
+  <div class="row">
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>
+
+<footer>
+  
+</footer>
+
+

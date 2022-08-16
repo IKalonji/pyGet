@@ -1,0 +1,32 @@
+<div class="accordion" *ngFor="let package of packages">
+    <div class="item">
+        <input type="radio" name="rd" />
+        <label class="item-label">Package: {{ package.package_name }}</label>
+        <div class="item-content">
+            <div class="details">
+                <h4>Version</h4>
+                <p>{{ package.package_version }}</p>
+            </div>
+            <div class="details">
+                <h4>Url</h4>
+                <p>{{ package.package_url }}</p>
+            </div>
+            <div class="details">
+                <h4>Author</h4>
+                <p>{{ package.package_author }}</p>
+            </div>
+            <div class="details">
+                <h4>Licence</h4>
+                <p>{{ package.package_licence }}</p>
+            </div>
+            <div class="details">
+                <h4>Id</h4>
+                <p>{{ package.package_cid }}</p>
+            </div>
+            <div class="details">
+                <h4>Description</h4>
+                <p>{{ package.package_description }}</p>
+            </div>
+        </div>
+    </div>
+</div>

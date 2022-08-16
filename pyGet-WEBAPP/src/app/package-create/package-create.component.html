@@ -1,0 +1,40 @@
+<form (ngSubmit)="submitPackage()">
+    <div class="form-header">
+        <h1>Add New Package</h1>
+    </div>
+    <div class="form-input">
+        <label>Packgane Name</label>
+        <input name="package_name" [(ngModel)]="package.package_name" type="text" placeholder="Package Name" required />
+    </div>
+    <div class="form-input">
+        <label>Packgane Version</label>
+        <input name="package_version" [(ngModel)]="package.package_version" type="text" placeholder="Package Version" required />
+    </div>
+    <div class="form-input">
+        <label>Packgane Url</label>
+        <input name="package_url" [(ngModel)]="package.package_url" type="text" placeholder="Package Url" required />
+    </div>
+    <div class="form-input">
+        <label>Packgane Author</label>
+        <input name="package_author" [(ngModel)]="package.package_author" type="text" placeholder="Package Author Name" required />
+    </div>
+    <div class="form-input">
+        <label>Packgane Licence</label>
+        <input name="package_licence" [(ngModel)]="package.package_licence" type="text" placeholder="Package Licence" />
+    </div>
+    <div class="form-input">
+        <label>Packgane Description</label>
+        <textarea name="package_description" [(ngModel)]="package.package_description" rows="5" placeholder="Package Description..."></textarea>
+    </div>
+    <div class="form-input">
+        <label>Packgane File</label>
+        <input name="file" type="file"  required />
+    </div>
+    <div class="form-input">
+        <span></span>
+        <div class="button-space">
+            <button routerLink="/" class="button-cancel" type="button">Back</button>
+            <button class="button-submit" type="submit">Submit</button>
+        </div>
+    </div>
+</form>

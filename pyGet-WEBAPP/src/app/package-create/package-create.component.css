@@ -1,0 +1,93 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 620px;
+    margin: auto;
+    padding: 30px;
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+.form-input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input, textarea {
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid lightslategray;
+    color: lightslategray;
+    resize: none;
+    padding: 7px;
+}
+
+label {
+    color: lightslategray;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 4px;
+}
+
+.button-space {
+    width: 72%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+button {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.button-cancel {
+    background-color: gray;
+}
+
+.button-submit {
+    background-color: darkblue;
+}
+
+.form-header {
+    min-width: 150px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 678px) {
+    form {
+        margin: 0;
+        padding: 5px;
+    }
+
+    .form-input {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input, textarea {
+        width: 96%;
+        margin: auto;
+    }
+
+    .button-space {
+        width: 100%;
+        margin: auto;
+    }
+}

@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    width: calc(100vw - (100vw - 100%));
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.row {
+    display:flex;
+}
+
+.row .col {
+    flex:1 ;
+}
+
+.spacer {
+    flex: 1;
+}
+

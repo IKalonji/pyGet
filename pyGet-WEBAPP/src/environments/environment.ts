@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  article_endpoint: "https://bs-loadbalance-1072678543.af-south-1.elb.amazonaws.com:8081/v1"
+  package_api_url: "http://127.0.0.1:5000/pyget/v0/"
 };
 
 /*

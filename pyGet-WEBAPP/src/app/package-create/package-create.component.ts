@@ -34,4 +34,8 @@ export class PackageCreateComponent implements OnInit {
         console.log("Error occurred: " + error.message);
       });
   }
+
+  submit(){
+    alert("Package created successfully");
+  }
 }

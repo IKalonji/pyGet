@@ -1,9 +1,7 @@
 import json
-from struct import pack
 import sys
 import os
 import requests
-
 
 ENDPOINT = 'http://localhost:5000/pyget/v0/'
 
@@ -56,11 +54,10 @@ def install_package(package_name):
         sys.exit(0)
 
     print(response.json())
-    #package = response.json()['data']
+    package = response.json()['data']
 
     print("""Package found""")
-    #print("""Package found: {}""".format(package))
-    
+    print("""Package found: {}""".format(package))
 
     #write package to file
 
@@ -93,6 +90,8 @@ def list_packages():
     print("""Packages found""")
     for package in response.json()['data']:
         print(package)
+    print("""Packages found""")
+    
 
 def help():
     """

@@ -13,7 +13,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/IKalonji/pyGet">
-    <img src="./pyGet-logo.png" alt="Logo" width="300" height="300">
+    <img src="./pyget-logo.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">pyGet</h3>
